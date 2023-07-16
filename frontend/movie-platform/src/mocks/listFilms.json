@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "The Shawshank Redemption",
+        "director": "Frank Darabont",
+        "year": "2004",
+        "score": "4"
+    },
+    {
+        "id": 2,
+        "name": "The Godfather",
+        "director": "Francis Ford Coppola",
+        "year": "1972",
+        "score": "4"
+    },
+    {
+        "id": 3,
+        "name": "The Dark Knight",
+        "director": "Christopher Nolan",
+        "year": "2008",
+        "score": "5"
+    },
+    {
+        "id": 4,
+        "name": "The Lord of the rings",
+        "director": "James Cameron",
+        "year": "2003",
+        "score": "5"
+    }
+]

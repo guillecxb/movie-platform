@@ -1,0 +1,40 @@
+header {
+  text-align: center;
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  padding-left: 40px;
+}
+
+main {
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+form { 
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
+
