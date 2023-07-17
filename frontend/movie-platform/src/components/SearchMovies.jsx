@@ -20,7 +20,7 @@ export function SearchMovies() {
     const score = fields.scoreSearch ? fields.scoreSearch : "9";
     // Constructing the request URL with search parameters
     const request = new Request(
-      `http://localhost:8000/film/search2?name=${name}&director=${director}&year=${year}&score=${score}`
+      `http://localhost:8000/film/search?name=${name}&director=${director}&year=${year}&score=${score}`
     );
     // Sending the HTTP request to search for movies
     fetch(request)

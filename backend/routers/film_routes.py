@@ -5,10 +5,6 @@ from repositories.film_repository import query_get, query_put, query_delete
 
 router= APIRouter(prefix="/film")
 
-films_list = [Film(id=1 ,name="El señor de los Anillos", director="Peter Jackson", year=2002, score=5), 
-              Film(id=2 ,name="Titanic", director="James Cameron", year=1997, score=4), 
-              Film(id=3 ,name="Barbie", director="Greta Gerwig", year=2023, score=2)]
-
 @router.get("/")
 async def get_films():
     return query_get("""SELECT * FROM film""", ())
@@ -31,15 +27,7 @@ def update_film(film: Film):
               (film.director, film.year, film.score, film.name))
     return {"message": "Película actualizada correctamente"}
 
-#http://localhost:8000/film/search?name=The%20Shawshank%20Redemption
-@router.get("/search1")
-async def get_films(name: Optional[str] = None, director: Optional[str] = None, year: Optional[int] = None, score: Optional[int] = None):
-    if name is not None:
-
-        return query_get("""SELECT * FROM film WHERE name LIKE %s""", (name))
-
-#http://localhost:8000/film/search2?name=The Dark Knight&director=Christopher Nolan&year=2000&score=1    
-@router.get("/search2")
+@router.get("/search")
 async def get_films(name: Optional[str] = None, director: Optional[str] = None, year: Optional[int] = None, score: Optional[int] = None):
     query = """SELECT * FROM film WHERE name LIKE %s or director LIKE %s or year LIKE %s or score LIKE %s;"""
     return query_get(query, (name, director, year, score))
