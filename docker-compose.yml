@@ -37,8 +37,6 @@ services:
     build: ./frontend/movie-platform
     restart: unless-stopped
     tty: true
-    volumes:
-      - ./frontend/movie-platform:/app
     command: npm run dev -- --port=3000 --host
     ports:
       - 3000:3000
