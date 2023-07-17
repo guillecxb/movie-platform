@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 export function ShowMovies() {
+  // State variable to store the search results
   const [movies, setMovies] = useState([]);
 
+  // Fetch movies data from the server
   useEffect(() => {
     fetch("http://localhost:8000/film/")
       .then((response) => response.json())

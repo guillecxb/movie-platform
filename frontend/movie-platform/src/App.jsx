@@ -1,6 +1,4 @@
 import './App.css'
-// useRef es un hook que te permite crear una referencia mutable que persiste durante todo el ciclo de vida de tu componente, su valor no se reinicia
-// cada vez que cambia no vuelve a renderizar todo el componente
 import { ShowMovies } from './components/ShowMovies'
 import { SearchMovies } from './components/SearchMovies'
 import { AddMovies } from './components/AddMovies'

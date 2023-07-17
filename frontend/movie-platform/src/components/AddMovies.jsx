@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useRef } from "react";
-import { useMovies } from "../hooks/useMovies";
-import { Movies } from "./Movies";
-import { ShowMovies } from "./ShowMovies";
-
-// useRef es un hook que crea una referencia mutable qu epersiste durante toda la vida del componente
+import React from "react";
 
 export function AddMovies() {
-
+  // Function executed when the form is submitted
   const handleSubmit = (event) => {
-    if (event && event.preventDefault) { event.preventDefault(); }
-    const fields = Object.fromEntries(new window.FormData(event.target));
-    console.log(fields);
-    
-    // En fields.nameSearch tengo el nombre de lo introducido
-    //console.log(fields.nameSearch)
-
-    const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: fields.nameSearch, director: fields.directorSearch, year: fields.yearSearch, score: fields.yearSearch})
+    if (event && event.preventDefault) {
+      event.preventDefault();
     }
+    const fields = Object.fromEntries(new window.FormData(event.target));
 
-    fetch('http://localhost:8000/film/add', requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data))
+    // HTTP request options
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: fields.nameSearch,
+        director: fields.directorSearch,
+        year: fields.yearSearch,
+        score: fields.yearSearch,
+      }),
     };
+
+    // Sending the HTTP request to add the movie
+    fetch("http://localhost:8000/film/add", requestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  };
 
   return (
     <div>
@@ -35,7 +34,9 @@ export function AddMovies() {
         <input name="directorSearch" placeholder="Director" />
         <input name="yearSearch" placeholder="Year" />
         <input name="scoreSearch" placeholder="Score [1-5]" />
-        <button onClick={() => window.location.reload()} type="submit">Add</button>
+        <button onClick={() => window.location.reload()} type="submit">
+          Add
+        </button>
       </form>
     </div>
   );
