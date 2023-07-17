@@ -1,25 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { useRef } from 'react' 
+import React from "react";
+import { useState } from 'react' 
 import { useMovies } from "../hooks/useMovies";
 import { Movies } from "./Movies";
 
 // useRef es un hook que crea una referencia mutable qu epersiste durante toda la vida del componente
 
 export function SearchMovies() {
-    //if (event && event.preventDefault) { event.preventDefault(); }
-    //event.preventDefault()
-    // http://localhost:8000/film/search?name=The%20Shawshank%20Redemption
-    //const url = "http://localhost:8000/film/search";
+  const [movies, setMovies] = useState([]);
 
-    const { movies } = useMovies()
-    const inputRef = useRef()
+  const handleSubmit = (event) => {
+    if (event && event.preventDefault) { event.preventDefault(); }
+    const fields = Object.fromEntries(new window.FormData(event.target))
+    console.log(fields)
 
-    const handleSubmit = (event) => {
-        if (event && event.preventDefault) { event.preventDefault(); }
-        const fields = Object.fromEntries(new window.FormData(event.target))
-        console.log(fields)
-        //console.log(fields.nameSearch)
-    }
+  
+    const name = fields.nameSearch ? fields.nameSearch : 'random';
+    const director = fields.directorSearch ? fields.directorSearch : 'random';
+    const year = fields.yearSearch ? fields.yearSearch : '0';
+    const score = fields.scoreSearch ? fields.scoreSearch : '9';   
+
+
+
+    const request = new Request(`http://localhost:8000/film/search2?name=${name}&director=${director}&year=${year}&score=${score}`);
+
+    fetch(request)
+      .then(response => response.json())
+      .then(data =>  setMovies(data));
+  }
 
   return (
     <div>
@@ -28,7 +35,7 @@ export function SearchMovies() {
         <input name='nameSearch' placeholder="Name"/>
         <input name='directorSearch' placeholder="Director"/>
         <input name='yearSearch' placeholder="Year"/>
-        <input name='scoreSearch' placeholder="Score"/>
+        <input name='scoreSearch' placeholder="Score [1-5]"/>
         <button type="submit">Search</button>
       </form>
       <main>

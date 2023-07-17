@@ -42,7 +42,7 @@ export function UpdateMovies() {
         <input name="nameSearch" placeholder="Name" />
         <input name="directorSearch" placeholder="Director" />
         <input name="yearSearch" placeholder="Year" />
-        <input name="scoreSearch" placeholder="Score" />
+        <input name="scoreSearch" placeholder="Score [1-5]" />
         <button onClick={() => window.location.reload()} type="submit">Update</button>
       </form>
     </div>

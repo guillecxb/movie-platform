@@ -7,15 +7,9 @@ import { ShowMovies } from "./ShowMovies";
 // useRef es un hook que crea una referencia mutable qu epersiste durante toda la vida del componente
 
 export function AddMovies() {
-  //if (event && event.preventDefault) { event.preventDefault(); }
-  //event.preventDefault()
-  // http://localhost:8000/film/search?name=The%20Shawshank%20Redemption
-  //const url = "http://localhost:8000/film/search";
 
   const handleSubmit = (event) => {
-    if (event && event.preventDefault) {
-      event.preventDefault();
-    }
+    if (event && event.preventDefault) { event.preventDefault(); }
     const fields = Object.fromEntries(new window.FormData(event.target));
     console.log(fields);
     
@@ -40,7 +34,7 @@ export function AddMovies() {
         <input name="nameSearch" placeholder="Name" />
         <input name="directorSearch" placeholder="Director" />
         <input name="yearSearch" placeholder="Year" />
-        <input name="scoreSearch" placeholder="Score" />
+        <input name="scoreSearch" placeholder="Score [1-5]" />
         <button onClick={() => window.location.reload()} type="submit">Add</button>
       </form>
     </div>

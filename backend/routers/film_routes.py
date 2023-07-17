@@ -35,26 +35,14 @@ def update_film(film: Film):
 @router.get("/search1")
 async def get_films(name: Optional[str] = None, director: Optional[str] = None, year: Optional[int] = None, score: Optional[int] = None):
     if name is not None:
+
         return query_get("""SELECT * FROM film WHERE name LIKE %s""", (name))
 
-@router.get("/search")
-async def search_films(film: Film):    
-    # Build the base SQL query
-    query = """SELECT * FROM film WHERE 1=1"""
-    
-    # Add conditions based on the provided values
-    params = []
-    if film.name is not None:
-        query += " AND name LIKE %s"
-        params.append('%' + film.name + '%')
-    if film.director is not None:
-        query += " AND director LIKE %s"
-        params.append('%' + film.director + '%')
-    if film.year is not None:
-        query += " AND year LIKE %s"
-        params.append('%' + film.year + '%')
-    
-    return query_put(query, ())
+#http://localhost:8000/film/search2?name=The Dark Knight&director=Christopher Nolan&year=2000&score=1    
+@router.get("/search2")
+async def get_films(name: Optional[str] = None, director: Optional[str] = None, year: Optional[int] = None, score: Optional[int] = None):
+    query = """SELECT * FROM film WHERE name LIKE %s or director LIKE %s or year LIKE %s or score LIKE %s;"""
+    return query_get(query, (name, director, year, score))
     
     
 
