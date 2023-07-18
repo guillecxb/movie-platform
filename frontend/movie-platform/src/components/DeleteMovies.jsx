@@ -9,7 +9,7 @@ export function DeleteMovies() {
     const fields = Object.fromEntries(new window.FormData(event.target));
 
     // Sending the HTTP request to delete the movie
-    fetch(`http://localhost:8000/film/delete/${fields.nameSearch}`, {
+    fetch(`http://localhost:8000/films/${fields.nameSearch}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
