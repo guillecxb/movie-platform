@@ -6,7 +6,7 @@ export function ShowMovies() {
 
   // Fetch movies data from the server
   useEffect(() => {
-    fetch("http://localhost:8000/films/")
+    fetch("http://localhost:8000/film/")
       .then((response) => response.json())
       .then((data) => setMovies(data))
       .catch((error) => console.log(error));

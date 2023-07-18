@@ -16,12 +16,12 @@ export function AddMovies() {
         name: fields.nameSearch,
         director: fields.directorSearch,
         year: fields.yearSearch,
-        score: fields.scoreSearch,
+        score: fields.yearSearch,
       }),
     };
 
     // Sending the HTTP request to add the movie
-    fetch("http://localhost:8000/films", requestOptions)
+    fetch("http://localhost:8000/film/add", requestOptions)
       .then((response) => response.json())
       .then((data) => console.log(data));
   };

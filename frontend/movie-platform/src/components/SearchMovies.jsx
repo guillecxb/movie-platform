@@ -14,15 +14,14 @@ export function SearchMovies() {
     const fields = Object.fromEntries(new window.FormData(event.target));
 
     // Extracting values from form fields, using default values if empty
-    const name = fields.nameSearch ? fields.nameSearch : null;
-    const director = fields.directorSearch ? fields.directorSearch : null;
-    const year = fields.yearSearch ? fields.yearSearch : null;
-    const score = fields.scoreSearch ? fields.scoreSearch : null;
+    const name = fields.nameSearch ? fields.nameSearch : "null";
+    const director = fields.directorSearch ? fields.directorSearch : "null";
+    const year = fields.yearSearch ? fields.yearSearch : 0;
+    const score = fields.scoreSearch ? fields.scoreSearch : 0;
 
     // Constructing the request URL with search parameters
-    // `http://localhost:8000/film/search?name=${name}&director=${director}&year=${year}&score=${score}`
     const request = new Request(
-      `http://localhost:8000/films/${name}/${director}/${year}/${score}`
+      `http://localhost:8000/film/search?name=${name}&director=${director}&year=${year}&score=${score}`
     );
     // Sending the HTTP request to search for movies
     fetch(request)

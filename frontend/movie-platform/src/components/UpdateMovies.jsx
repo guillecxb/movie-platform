@@ -21,7 +21,7 @@ export function UpdateMovies() {
     };
 
     // Sending the update request to the server
-    fetch("http://localhost:8000/films", requestOptions)
+    fetch("http://localhost:8000/film/update", requestOptions)
       .then((response) => response.json())
       .then((data) => console.log(data));
   };
