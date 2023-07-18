@@ -1,6 +1,7 @@
 import unittest
 from fastapi.testclient import TestClient
-from ..main import app
+import pytest
+from main import app
 
 class FilmAPITest(unittest.TestCase):
     def setUp(self):
@@ -14,8 +15,8 @@ class FilmAPITest(unittest.TestCase):
         film_data = {
             "name": "Film Name",
             "director": "Director Name",
-            "year": 2023,
-            "score": 8.5
+            "year": "2023",
+            "score": "8.5"
         }
         response = self.client.post("/film/add", json=film_data)
         self.assertEqual(response.status_code, 200)  # Verifica que la respuesta sea exitosa
@@ -29,8 +30,8 @@ class FilmAPITest(unittest.TestCase):
         film_data = {
             "name": "Film Name",
             "director": "New Director",
-            "year": 2024,
-            "score": 9.0
+            "year": "2024",
+            "score": "9.0"
         }
         response = self.client.put("/film/update", json=film_data)
         self.assertEqual(response.status_code, 200)  # Verifica que la respuesta sea exitosa
@@ -39,11 +40,21 @@ class FilmAPITest(unittest.TestCase):
         params = {
             "name": "Film Name",
             "director": "Director Name",
-            "year": 2023,
-            "score": 8.5
+            "year": "2023",
+            "score": "8.5"
         }
         response = self.client.get("/film/search", params=params)
         self.assertEqual(response.status_code, 200)  # Verifica que la respuesta sea exitosa
 
-if __name__ == '__main__':
-    unittest.main()
+@pytest.fixture
+def client():
+    return TestClient(app)
+
+def test_get_films_xxxxxx(client):
+    response = client.get("/film/")
+    assert response.json() == []
+    assert response.status_code == 200
+
+
+def some_test():
+    assert 1 == 1
